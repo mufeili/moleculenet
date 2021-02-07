@@ -15,7 +15,7 @@ def load_model(save_pth, args, tasks, hyperparams):
     mode = 'classification'
     # binary classification
     n_classes = 2
-  elif args['dataset'] in ['BACE_regression', 'Delaney', 'HOPV']:
+  elif args['dataset'] in ['BACE_regression', 'Delaney', 'HOPV', 'HPPB']:
     mode = 'regression'
     n_classes = None
   else:
@@ -177,7 +177,8 @@ if __name__ == '__main__':
   parser.add_argument(
       '-d',
       '--dataset',
-      choices=['BACE_classification', 'BACE_regression', 'BBBP', 'ClinTox', 'Delaney', 'HOPV'],
+      choices=['BACE_classification', 'BACE_regression', 'BBBP', 'ClinTox', 'Delaney', 'HOPV',
+               'HPPB'],
       help='Dataset to use')
   parser.add_argument(
       '-m',

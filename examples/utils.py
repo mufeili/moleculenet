@@ -6,7 +6,7 @@ import torch
 def decide_metric(dataset):
   if dataset in ['BACE_classification', 'BBBP', 'ClinTox']:
     return 'roc_auc'
-  elif dataset in ['BACE_regression', 'Delaney', 'HOPV']:
+  elif dataset in ['BACE_regression', 'Delaney', 'HOPV', 'HPPB']:
     return 'rmse'
   else:
     return ValueError('Unexpected dataset: {}'.format(dataset))
@@ -86,6 +86,10 @@ def load_dataset(args):
   elif args['dataset'] == 'HOPV':
     from deepchem.molnet import load_hopv
     tasks, all_dataset, transformers = load_hopv(
+      featurizer=featurizer, splitter=splitter, reload=False)
+  elif args['dataset'] == 'HPPB':
+    from deepchem.molnet import load_hppb
+    tasks, all_dataset, transformers = load_hppb(
       featurizer=featurizer, splitter=splitter, reload=False)
   else:
     raise ValueError('Unexpected dataset: {}'.format(args['dataset']))
